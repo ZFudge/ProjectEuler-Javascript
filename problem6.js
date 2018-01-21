@@ -5,9 +5,7 @@
 */
 
 function isPrime(num) {
-	for (let i = 2; i <= Math.ceil(num**0.5); i++) {
-		if (num % i === 0) return false;
-	}
+	for (let i = 2; i <= Math.ceil(num**0.5); i++) if (num % i === 0) return false;
 	return true;
 }
 
@@ -16,10 +14,7 @@ let numberBeingChecked = 1;
 
 while (primeCount < 10001) {
 	numberBeingChecked += 2;
-	if (isPrime(numberBeingChecked)) {
-		primeCount++;
-		console.log(primeCount);
-	}
+	if (isPrime(numberBeingChecked)) primeCount++;
 }
 
 console.log(`The 10,001st prime is ${numberBeingChecked}.`);
