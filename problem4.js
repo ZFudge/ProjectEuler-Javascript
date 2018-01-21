@@ -8,8 +8,6 @@ const divides = (num) => num%20===0&&num%19===0&&num%18===0&&num%17===0&&num%16=
 
 let num = 1000;
 
-while (!divides(num)) {
-	num+=2;
-}
+while (!divides(num)) num+=2;
 
 console.log(`The smallest positive number that is evenly divisible by all of the numbers from 1 to 20 is ${num}.`);
