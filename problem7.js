@@ -13,4 +13,4 @@ for (let i=0; i < strNum.length-12; i++) {
 	if (product > largestProduct) largestProduct = product;
 }
 
-console.log(largestProduct);
+console.log(`The greatest product that can be made from thirteen adjacent numbers in the 1000-digit number is ${largestProduct}`);
