@@ -1,4 +1,4 @@
-/* In the 20×20 grid below, four numbers along a diagonal line have been marked in red.
+/* In the 20×20 grid below, four numbers along a diagonal line have been marked with *'s.
 
 			08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 			49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
@@ -6,10 +6,10 @@
 			52 70 95 23 04 60 11 42 69 24 68 56 01 32 56 71 37 02 36 91
 			22 31 16 71 51 67 63 89 41 92 36 54 22 40 40 28 66 33 13 80
 			24 47 32 60 99 03 45 02 44 75 33 53 78 36 84 20 35 17 12 50
-			32 98 81 28 64 23 67 10 26 38 40 67 59 54 70 66 18 38 64 70
-			67 26 20 68 02 62 12 20 95 63 94 39 63 08 40 91 66 49 94 21
-			24 55 58 05 66 73 99 26 97 17 78 78 96 83 14 88 34 89 63 72
-			21 36 23 09 75 00 76 44 20 45 35 14 00 61 33 97 34 31 33 95
+			32 98 81 28 64 23 67 10 26* 38 40 67 59 54 70 66 18 38 64 70
+			67 26 20 68 02 62 12 20 95 63* 94 39 63 08 40 91 66 49 94 21
+			24 55 58 05 66 73 99 26 97 17 78* 78 96 83 14 88 34 89 63 72
+			21 36 23 09 75 00 76 44 20 45 35 14* 00 61 33 97 34 31 33 95
 			78 17 53 28 22 75 31 67 15 94 03 80 04 62 16 14 09 53 56 92
 			16 39 05 42 96 35 31 47 55 58 88 24 00 17 54 24 36 29 85 57
 			86 56 00 48 35 71 89 07 05 44 44 37 44 60 21 58 51 54 17 58
@@ -25,8 +25,7 @@ The product of these numbers is 26 × 63 × 78 × 14 = 1788696.
 
 What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid? */
 
-const twoDimArr = [];
-const numArr = [];
+const twoDimArr = numArr = [];
 
 const str = `08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 			49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
@@ -60,31 +59,27 @@ twoDimArr.forEach(ind => {
 let largestProduct = 0;
 
 // horizontal
-for (let i = 0; i < 20; i++) { 
-	for (let j = 0; j <= 16; j++) {
-		if (numArr[i][j] * numArr[i][j+1] * numArr[i][j+2] * numArr[i][j+3] > largestProduct) largestProduct = numArr[i][j] * numArr[i][j+1] * numArr[i][j+2] * numArr[i][j+3];
+for (let i = 0; i < 20; i++) for (let j = 0; j <= 16; j++) {
+		const product = numArr[i][j] * numArr[i][j+1] * numArr[i][j+2] * numArr[i][j+3];
+		if (product > largestProduct) largestProduct = product;
 	}
-}
 
 // vertical
-for (let i = 0; i <= 16; i++) {
-	for (let j = 0; j < 20; j++) {
-		if (numArr[i][j] * numArr[i+1][j] * numArr[i+2][j] * numArr[i+3][j] > largestProduct) largestProduct = numArr[i][j] * numArr[i+1][j] * numArr[i+2][j] * numArr[i+3][j];
+for (let i = 0; i <= 16; i++) for (let j = 0; j < 20; j++) {
+		const product = numArr[i][j] * numArr[i+1][j] * numArr[i+2][j] * numArr[i+3][j];
+		if (product > largestProduct) largestProduct = product;
 	}
-}
 
-// diagonal /
-for (let i = 0; i <= 16; i++) {
-	for (let j = 0; j <= 16; j++) {
-		if (numArr[i][j] * numArr[i+1][j+1] * numArr[i+2][j+2] * numArr[i+3][j+3] > largestProduct) largestProduct = numArr[i][j] * numArr[i+1][j+1] * numArr[i+2][j+2] * numArr[i+3][j+3];
+// diagonal Major \
+for (let i = 0; i <= 16; i++) for (let j = 0; j <= 16; j++) {
+		const product = numArr[i][j] * numArr[i+1][j+1] * numArr[i+2][j+2] * numArr[i+3][j+3];
+		if (product > largestProduct) largestProduct = product;
 	}
-}
 
-// diagonal \
-for (let i = 0; i <= 16; i++) {
-	for (let j = 3; j <= 20; j++) {
-		if (numArr[i][j] * numArr[i+1][j-1] * numArr[i+2][j-2] * numArr[i+3][j-3] > largestProduct) largestProduct = numArr[i][j] * numArr[i+1][j-1] * numArr[i+2][j-2] * numArr[i+3][j-3];
+// diagonal Minor /
+for (let i = 0; i <= 16; i++) for (let j = 3; j <= 20; j++) {
+		const product = numArr[i][j] * numArr[i+1][j-1] * numArr[i+2][j-2] * numArr[i+3][j-3];
+		if (product > largestProduct) largestProduct = product;
 	}
-}
 
 console.log(`The greatest product of four adjacent numbers in the same direction in the 20×20 grid is ${largestProduct}.`);
