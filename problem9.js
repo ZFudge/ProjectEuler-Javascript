@@ -11,4 +11,4 @@ let sum = 2; // include 2 as only even prime number
 
 for (let i = 3; i < 2000000; i+=2) if (isPrime(i)) sum+=i;
 
-console.log(sum);
+console.log(`The sum of all the primes below two million is ${sum}.`);
