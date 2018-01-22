@@ -9,7 +9,7 @@ function fib(n1,n2) {
 	(n1 < 4000000 && n2 < 4000000) ? (
 			(n2 % 2 == 0) ? sum += n2 : null,
 				fib(n2, n1 + n2)
-		) : console.log(sum);
+		) : console.log(`The sum of all even valued terms that are less than four million in the Fibonacci sequence is ${sum}.`);
 }
 
 fib(1,1);
