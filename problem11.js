@@ -22,12 +22,15 @@ function divisors(num) {
 }
 
 const problem = {
-  step: 0
+  step: 0,
+  triangle: 0
 };
 
-function triangle(tri) {
+function triangle() {
   problem.step++;
-  (divisors(tri) < 500) ? triangle(tri + problem.step) : console.log(`The first triangle number to have over five hundred divisors is ${tri}`);
+  problem.triangle += problem.step;
 }
 
-triangle(0);
+while (divisors(problem.triangle) < 500) triangle();
+
+console.log(`The first triangle number to have over five hundred divisors is ${problem.triangle}.`);
